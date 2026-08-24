@@ -1,0 +1,1086 @@
+/* ==========================================================================
+   ZeroConfig - Signature Neumorphic / Morphism Theme Landing Page
+   Aesthetic: Soft Blue-Grey Tactile Canvas (#e6e9ef), Pure Dual Shadow
+   Elevation, Crisp Slate Typography, Royal Blue Accents & Inset Terminal
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+:root {
+  --neu-bg: #e6e9ef;
+  --neu-bg-card: #e6e9ef;
+  --neu-bg-dark: #1e293b;
+  --neu-bg-terminal: #0f172a;
+  
+  --neu-text-main: #2d3748;
+  --neu-text-muted: #718096;
+  --neu-text-dim: #a0aec0;
+  
+  --neu-light: #ffffff;
+  --neu-dark: #b0bacc;
+  
+  --neu-shadow-flat: -6px -6px 14px var(--neu-light), 6px 6px 14px var(--neu-dark);
+  --neu-shadow-flat-lg: -10px -10px 22px var(--neu-light), 10px 10px 22px var(--neu-dark);
+  --neu-shadow-hover: -10px -10px 20px var(--neu-light), 10px 10px 20px var(--neu-dark);
+  --neu-shadow-pressed: inset 4px 4px 8px var(--neu-dark), inset -4px -4px 8px var(--neu-light);
+  --neu-shadow-subtle: -3px -3px 8px var(--neu-light), 3px 3px 8px var(--neu-dark);
+  
+  --neu-accent: #3182ce;
+  --neu-accent-hover: #2b6cb0;
+  --neu-accent-light: #63b3ed;
+  --neu-accent-glow: rgba(49, 130, 206, 0.25);
+  
+  --neu-success: #38a169;
+  --neu-success-bg: rgba(56, 161, 105, 0.12);
+  --neu-purple: #805ad5;
+  --neu-purple-bg: rgba(128, 90, 213, 0.12);
+  --neu-amber: #d69e2e;
+  --neu-amber-bg: rgba(214, 158, 46, 0.12);
+  --neu-error: #e53e3e;
+
+  --neu-font: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --neu-mono: 'JetBrains Mono', 'Fira Code', monospace;
+
+  --neu-radius-sm: 12px;
+  --neu-radius-md: 20px;
+  --neu-radius-lg: 32px;
+  --neu-radius-full: 999px;
+}
+
+/* Base Wrapper */
+.neu-landing-wrapper {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--neu-bg);
+  color: var(--neu-text-main);
+  font-family: var(--neu-font);
+  overflow-x: hidden;
+  position: relative;
+  box-sizing: border-box;
+}
+
+.neu-landing-wrapper * {
+  box-sizing: border-box;
+}
+
+/* Container */
+.neu-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================================================
+   Neumorphic Navbar
+   ========================================================================== */
+.neu-navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(230, 233, 239, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(176, 186, 204, 0.3);
+  box-shadow: 0 4px 16px rgba(176, 186, 204, 0.2);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.neu-navbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 72px;
+  gap: 1rem;
+  width: 100%;
+}
+
+.neu-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.neu-brand-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 10px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-flat);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--neu-accent);
+  transition: all 0.3s ease;
+}
+
+.neu-brand:hover .neu-brand-icon {
+  box-shadow: var(--neu-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.neu-brand-title {
+  font-size: 1.4rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #1e3a8a 0%, var(--neu-accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.neu-brand-badge {
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--neu-radius-full);
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-pressed);
+  color: var(--neu-accent);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.neu-nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.neu-nav-link {
+  color: var(--neu-text-muted);
+  text-decoration: none;
+  font-size: 0.925rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  padding: 0.35rem 0.5rem;
+  border-radius: 8px;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+.neu-nav-link:hover {
+  color: var(--neu-accent);
+}
+
+.neu-nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.neu-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  color: var(--neu-success);
+  background: var(--neu-bg);
+  padding: 6px 12px;
+  border-radius: var(--neu-radius-full);
+  box-shadow: var(--neu-shadow-subtle);
+  font-weight: 600;
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.neu-status-dot {
+  width: 8px;
+  height: 8px;
+  background: var(--neu-success);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--neu-success);
+  animation: neu-pulse 2s infinite;
+}
+
+@keyframes neu-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.85); }
+}
+
+/* ==========================================================================
+   Neumorphic Button Primitives
+   ========================================================================== */
+.neu-btn-action {
+  background: var(--neu-bg);
+  border-radius: var(--neu-radius-full);
+  box-shadow: var(--neu-shadow-flat);
+  border: none;
+  color: var(--neu-text-main);
+  font-weight: 700;
+  font-size: 0.925rem;
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  font-family: var(--neu-font);
+  white-space: nowrap;
+  line-height: 1.2;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neu-btn-action:hover {
+  box-shadow: var(--neu-shadow-hover);
+  color: var(--neu-accent);
+  transform: translateY(-2px);
+}
+
+.neu-btn-action:active {
+  box-shadow: var(--neu-shadow-pressed);
+  transform: translateY(1px);
+}
+
+.neu-btn-primary-action {
+  background: var(--neu-bg);
+  color: var(--neu-accent);
+  box-shadow: var(--neu-shadow-flat);
+  border: 1px solid rgba(49, 130, 206, 0.2);
+}
+
+.neu-btn-primary-action:hover {
+  background: var(--neu-accent);
+  color: #ffffff;
+  box-shadow: 0 8px 24px rgba(49, 130, 206, 0.35);
+}
+
+.neu-btn-ghost-action {
+  background: transparent;
+  box-shadow: none;
+  color: var(--neu-text-muted);
+}
+
+.neu-btn-ghost-action:hover {
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-text-main);
+}
+
+/* ==========================================================================
+   Hero Section
+   ========================================================================== */
+.neu-hero {
+  padding: 4.5rem 0 3rem;
+  text-align: center;
+}
+
+.neu-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--neu-radius-full);
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-accent);
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+}
+
+.neu-badge-tag {
+  background: var(--neu-accent);
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 8px;
+  border-radius: var(--neu-radius-full);
+  text-transform: uppercase;
+}
+
+.neu-hero-title {
+  font-size: 3.75rem;
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
+  max-width: 960px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--neu-text-main);
+  text-shadow: 0 10px 30px rgba(37, 99, 235, 0.08);
+}
+
+.neu-gradient-span {
+  background: linear-gradient(135deg, #1e3a8a 0%, var(--neu-accent) 50%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.neu-hero-desc {
+  font-size: 1.25rem;
+  color: var(--neu-text-muted);
+  max-width: 760px;
+  margin: 0 auto 2.75rem;
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.neu-hero-ctas {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.75rem;
+}
+
+/* Quick CLI Command Box (Neumorphic Inset) */
+.neu-cli-box {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.85rem;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-pressed);
+  border-radius: var(--neu-radius-md);
+  padding: 0.65rem 0.85rem 0.65rem 1.4rem;
+  font-family: var(--neu-mono);
+  font-size: 0.95rem;
+  color: var(--neu-text-main);
+}
+
+.neu-cli-prompt {
+  color: var(--neu-accent);
+  font-weight: 700;
+  user-select: none;
+}
+
+.neu-cli-code {
+  font-weight: 600;
+  color: var(--neu-text-main);
+}
+
+.neu-copy-btn {
+  background: var(--neu-bg);
+  border: none;
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-accent);
+  padding: 0.45rem 0.9rem;
+  border-radius: var(--neu-radius-sm);
+  font-size: 0.825rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--neu-font);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.neu-copy-btn:hover {
+  box-shadow: var(--neu-shadow-flat);
+  color: var(--neu-accent-hover);
+  transform: translateY(-1px);
+}
+
+.neu-copy-btn:active {
+  box-shadow: var(--neu-shadow-pressed);
+  transform: translateY(1px);
+}
+
+/* ==========================================================================
+   Interactive Hero Inspector Showcase (Neumorphic Outer Frame)
+   ========================================================================== */
+.neu-showcase-frame {
+  margin: 3.5rem auto 5rem;
+  background: var(--neu-bg);
+  border-radius: 28px;
+  box-shadow: var(--neu-shadow-flat-lg);
+  padding: 1.25rem;
+  position: relative;
+  text-align: left;
+}
+
+.neu-showcase-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0.75rem 1rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.neu-window-dots {
+  display: flex;
+  gap: 8px;
+}
+
+.neu-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.neu-dot-red { background: #ef4444; }
+.neu-dot-yellow { background: #eab308; }
+.neu-dot-green { background: #22c55e; }
+
+.neu-scenario-pills {
+  display: flex;
+  gap: 0.6rem;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-pressed);
+  padding: 4px;
+  border-radius: var(--neu-radius-full);
+}
+
+.neu-scenario-pill {
+  background: transparent;
+  border: none;
+  color: var(--neu-text-muted);
+  padding: 0.4rem 1rem;
+  border-radius: var(--neu-radius-full);
+  font-size: 0.825rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--neu-font);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.neu-scenario-pill.active {
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-accent);
+}
+
+.neu-showcase-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 1.25rem;
+}
+
+@media (max-width: 900px) {
+  .neu-showcase-inner {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Left Pane: Neumorphic Inset Terminal */
+.neu-term-container {
+  background: #111827;
+  border-radius: 18px;
+  box-shadow: var(--neu-shadow-pressed);
+  padding: 1.5rem;
+  color: #e2e8f0;
+  font-family: var(--neu-mono);
+  font-size: 0.825rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.neu-term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.neu-term-meta {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  row-gap: 0.4rem;
+  color: #94a3b8;
+  margin-bottom: 1.25rem;
+  font-size: 0.8rem;
+}
+
+.neu-term-meta-val {
+  color: #f8fafc;
+}
+
+.neu-term-logs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.neu-term-log-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.6rem 0.75rem;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.neu-term-log-item:hover, .neu-term-log-item.active {
+  background: rgba(56, 189, 248, 0.1);
+  border-color: rgba(56, 189, 248, 0.35);
+}
+
+.neu-method-badge {
+  font-size: 0.7rem;
+  font-weight: 800;
+  padding: 2px 6px;
+  border-radius: 4px;
+  width: 48px;
+  text-align: center;
+}
+
+.neu-method-POST { background: rgba(59, 130, 246, 0.25); color: #60a5fa; }
+.neu-method-GET { background: rgba(16, 185, 129, 0.25); color: #34d399; }
+.neu-method-PUT { background: rgba(245, 158, 11, 0.25); color: #fbbf24; }
+.neu-method-DELETE { background: rgba(239, 68, 68, 0.25); color: #f87171; }
+
+/* Right Pane: Inspector Panel */
+.neu-inspector-panel {
+  background: var(--neu-bg);
+  border-radius: 18px;
+  box-shadow: var(--neu-shadow-flat);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.neu-insp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(176, 186, 204, 0.3);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.neu-insp-path-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.neu-insp-path-text {
+  font-family: var(--neu-mono);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--neu-text-main);
+}
+
+.neu-insp-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.neu-insp-tab-btn {
+  background: var(--neu-bg);
+  border: none;
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.45rem 1rem;
+  border-radius: var(--neu-radius-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--neu-font);
+}
+
+.neu-insp-tab-btn.active {
+  box-shadow: var(--neu-shadow-pressed);
+  color: var(--neu-accent);
+}
+
+.neu-code-display {
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-pressed);
+  border-radius: 14px;
+  padding: 1.2rem;
+  font-family: var(--neu-mono);
+  font-size: 0.825rem;
+  color: var(--neu-text-main);
+  overflow-x: auto;
+  line-height: 1.55;
+  flex: 1;
+  max-height: 280px;
+}
+
+/* ==========================================================================
+   Metrics Bar (Neumorphic Stats Grid)
+   ========================================================================== */
+.neu-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 768px) {
+  .neu-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.neu-stat-card {
+  background: var(--neu-bg);
+  border-radius: var(--neu-radius-md);
+  box-shadow: var(--neu-shadow-flat);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.neu-stat-card:hover {
+  box-shadow: var(--neu-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.neu-stat-number {
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  color: var(--neu-text-main);
+  margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+}
+
+.neu-stat-label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--neu-text-muted);
+}
+
+/* ==========================================================================
+   Section Headers
+   ========================================================================== */
+.neu-section-heading {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 4rem;
+}
+
+.neu-section-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--neu-accent);
+  margin-bottom: 0.75rem;
+  display: inline-block;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-subtle);
+  padding: 4px 14px;
+  border-radius: var(--neu-radius-full);
+}
+
+.neu-section-title {
+  font-size: 2.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+  color: var(--neu-text-main);
+}
+
+.neu-section-desc {
+  font-size: 1.15rem;
+  color: var(--neu-text-muted);
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Features Cards (Neumorphic Flat Tiles)
+   ========================================================================== */
+.neu-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 960px) {
+  .neu-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .neu-features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.neu-feature-box {
+  background: var(--neu-bg);
+  border-radius: var(--neu-radius-md);
+  box-shadow: var(--neu-shadow-flat);
+  padding: 2.25rem 2rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+}
+
+.neu-feature-box:hover {
+  box-shadow: var(--neu-shadow-hover);
+  transform: translateY(-4px);
+}
+
+.neu-feature-icon-wrapper {
+  width: 58px;
+  height: 58px;
+  border-radius: 16px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+  color: var(--neu-accent);
+}
+
+.neu-feat-purple .neu-feature-icon-wrapper { color: var(--neu-purple); }
+.neu-feat-green .neu-feature-icon-wrapper { color: var(--neu-success); }
+.neu-feat-amber .neu-feature-icon-wrapper { color: var(--neu-amber); }
+
+.neu-feature-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.75rem;
+  color: var(--neu-text-main);
+}
+
+.neu-feature-p {
+  font-size: 0.95rem;
+  color: var(--neu-text-muted);
+  line-height: 1.6;
+  flex: 1;
+}
+
+/* ==========================================================================
+   Comparison Table (Neumorphic Card Table)
+   ========================================================================== */
+.neu-comparison-card {
+  background: var(--neu-bg);
+  border-radius: 24px;
+  box-shadow: var(--neu-shadow-flat-lg);
+  padding: 1.5rem;
+  overflow-x: auto;
+  margin-bottom: 6rem;
+}
+
+.neu-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.neu-table th, .neu-table td {
+  padding: 1.25rem 1.5rem;
+}
+
+.neu-table th {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: var(--neu-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 2px solid rgba(176, 186, 204, 0.4);
+}
+
+.neu-table th.highlight {
+  color: var(--neu-accent);
+  background: rgba(49, 130, 206, 0.06);
+  border-radius: 12px 12px 0 0;
+}
+
+.neu-table td {
+  font-size: 0.95rem;
+  color: var(--neu-text-muted);
+  border-bottom: 1px solid rgba(176, 186, 204, 0.2);
+}
+
+.neu-table td.feature-name {
+  font-weight: 700;
+  color: var(--neu-text-main);
+}
+
+.neu-table td.highlight {
+  background: rgba(49, 130, 206, 0.04);
+  color: var(--neu-text-main);
+  font-weight: 700;
+}
+
+.neu-check-yes {
+  color: var(--neu-success);
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.neu-check-no {
+  color: var(--neu-text-dim);
+}
+
+/* ==========================================================================
+   Architecture Steps (3-Column Flow)
+   ========================================================================== */
+.neu-arch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  margin-bottom: 6rem;
+}
+
+@media (max-width: 860px) {
+  .neu-arch-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.neu-arch-card {
+  background: var(--neu-bg);
+  border-radius: var(--neu-radius-md);
+  box-shadow: var(--neu-shadow-flat);
+  padding: 2.25rem 1.75rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.neu-arch-card:hover {
+  box-shadow: var(--neu-shadow-hover);
+  transform: translateY(-2px);
+}
+
+.neu-step-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-accent);
+  font-size: 1.25rem;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.neu-step-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--neu-text-main);
+  margin-bottom: 0.75rem;
+}
+
+.neu-step-desc {
+  font-size: 0.95rem;
+  color: var(--neu-text-muted);
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   Quickstart Code Card (Neumorphic Outer, Inset Code)
+   ========================================================================== */
+.neu-quickstart-frame {
+  max-width: 860px;
+  margin: 0 auto 6rem;
+  background: var(--neu-bg);
+  border-radius: 24px;
+  box-shadow: var(--neu-shadow-flat-lg);
+  padding: 1.5rem;
+}
+
+.neu-qs-tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.neu-qs-tab-btn {
+  background: var(--neu-bg);
+  border: none;
+  box-shadow: var(--neu-shadow-subtle);
+  color: var(--neu-text-muted);
+  padding: 0.6rem 1.25rem;
+  border-radius: var(--neu-radius-sm);
+  font-size: 0.9rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--neu-font);
+}
+
+.neu-qs-tab-btn.active {
+  box-shadow: var(--neu-shadow-pressed);
+  color: var(--neu-accent);
+}
+
+.neu-qs-code-box {
+  background: var(--neu-bg);
+  box-shadow: var(--neu-shadow-pressed);
+  border-radius: 16px;
+  padding: 1.5rem;
+  font-family: var(--neu-mono);
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--neu-text-main);
+}
+
+/* ==========================================================================
+   FAQ Accordion
+   ========================================================================== */
+.neu-faq-stack {
+  max-width: 860px;
+  margin: 0 auto 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.neu-faq-card {
+  background: var(--neu-bg);
+  border-radius: var(--neu-radius-md);
+  box-shadow: var(--neu-shadow-flat);
+  overflow: hidden;
+  transition: all 0.2s ease;
+}
+
+.neu-faq-card:hover {
+  box-shadow: var(--neu-shadow-hover);
+}
+
+.neu-faq-btn {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: 1.5rem;
+  color: var(--neu-text-main);
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--neu-font);
+}
+
+.neu-faq-body {
+  padding: 0 1.5rem 1.5rem;
+  color: var(--neu-text-muted);
+  font-size: 0.975rem;
+  line-height: 1.65;
+}
+
+/* ==========================================================================
+   Final CTA Frame
+   ========================================================================== */
+.neu-cta-frame {
+  background: var(--neu-bg);
+  border-radius: 32px;
+  box-shadow: var(--neu-shadow-flat-lg);
+  padding: 4.5rem 2rem;
+  text-align: center;
+  margin-bottom: 6rem;
+  position: relative;
+}
+
+.neu-cta-title {
+  font-size: 3.25rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.25rem;
+  color: var(--neu-text-main);
+}
+
+.neu-cta-desc {
+  font-size: 1.25rem;
+  color: var(--neu-text-muted);
+  max-width: 650px;
+  margin: 0 auto 2.75rem;
+  line-height: 1.6;
+}
+
+/* ==========================================================================
+   Footer
+   ========================================================================== */
+.neu-footer {
+  background: var(--neu-bg);
+  box-shadow: 0 -4px 16px rgba(176, 186, 204, 0.15);
+  padding: 4.5rem 0 2.5rem;
+  color: var(--neu-text-muted);
+  font-size: 0.925rem;
+}
+
+.neu-footer-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 3rem;
+  margin-bottom: 3.5rem;
+}
+
+@media (max-width: 768px) {
+  .neu-footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.neu-footer-col h4 {
+  color: var(--neu-text-main);
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 1.25rem;
+}
+
+.neu-footer-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.neu-footer-links a {
+  color: var(--neu-text-muted);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s ease;
+}
+
+.neu-footer-links a:hover {
+  color: var(--neu-accent);
+}
+
+.neu-footer-bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid rgba(176, 186, 204, 0.3);
+  padding-top: 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  font-weight: 500;
+}

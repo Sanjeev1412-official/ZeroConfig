@@ -1,0 +1,44 @@
+services:
+  # Next.js Web App
+  - type: web
+    name: zeroconfig-web
+    runtime: node
+    rootDir: apps/web
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: DATABASE_URL
+        sync: false
+      - key: NEXTAUTH_SECRET
+        sync: false
+      - key: NEXTAUTH_URL
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: SMTP_HOST
+        sync: false
+      - key: SMTP_PORT
+        sync: false
+      - key: SMTP_SECURE
+        sync: false
+      - key: SMTP_USER
+        sync: false
+      - key: SMTP_PASS
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+
+  # Go Proxy / Tunnel Server
+  - type: web
+    name: zeroconfig-proxy
+    runtime: go
+    rootDir: apps/proxy
+    buildCommand: go build -o proxy main.go
+    startCommand: ./proxy
+    envVars:
+      - key: PORT
+        value: 8080
