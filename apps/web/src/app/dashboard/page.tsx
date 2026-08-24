@@ -120,11 +120,29 @@ function DashboardContent() {
     }
   };
 
+  const proxyBase = process.env.NEXT_PUBLIC_PROXY_URL || 'http://localhost:8080';
+  const proxyWsBase = proxyBase.startsWith('https://')
+    ? proxyBase.replace(/^https:\/\//, 'wss://')
+    : proxyBase.replace(/^http:\/\//, 'ws://');
+
+  const getWorkspaceProxyUrl = (clientId?: string) => {
+    if (!clientId) return '';
+    try {
+      const url = new URL(proxyBase);
+      if (url.hostname === 'localhost' || url.hostname === '127.0.0.1') {
+        return `${url.protocol}//${clientId}.${url.host}`;
+      }
+      return `${proxyBase}?clientId=${clientId}`;
+    } catch {
+      return `http://${clientId}.localhost:8080`;
+    }
+  };
+
   useEffect(() => {
     if (!activeWorkspace) return;
     const targetToken = activeWorkspace.clientId || activeWorkspace.id;
 
-    fetch(`http://localhost:8080/_api/status?token=${targetToken}`)
+    fetch(`${proxyBase}/_api/status?token=${targetToken}`)
       .then(async r => {
         if (r.status === 401) return setIsOnline(false);
         const d = await r.json();
@@ -132,12 +150,12 @@ function DashboardContent() {
       })
       .catch(() => setIsOnline(false));
 
-    fetch(`http://localhost:8080/_api/logs?token=${targetToken}`)
+    fetch(`${proxyBase}/_api/logs?token=${targetToken}`)
       .then(r => r.json())
       .then((data: TrafficLog[]) => setLogs(data || []))
       .catch(console.error);
 
-    const es = new EventSource(`http://localhost:8080/_api/logs/stream?token=${targetToken}`);
+    const es = new EventSource(`${proxyBase}/_api/logs/stream?token=${targetToken}`);
     es.onmessage = (event) => {
       try {
         const newLog = JSON.parse(event.data);
@@ -153,7 +171,7 @@ function DashboardContent() {
     es.onopen = () => setIsOnline(true);
 
     return () => es.close();
-  }, [activeWorkspace?.id, activeWorkspace?.clientId]);
+  }, [activeWorkspace?.id, activeWorkspace?.clientId, proxyBase]);
 
   useEffect(() => {
     if (!isBrowserAgentActive || !activeWorkspace) {
@@ -166,7 +184,7 @@ function DashboardContent() {
     }
 
     const targetToken = activeWorkspace.clientId || activeWorkspace.id;
-    const ws = new WebSocket(`ws://localhost:8080/_ws?token=${targetToken}`);
+    const ws = new WebSocket(`${proxyWsBase}/_ws?token=${targetToken}`);
     wsRef.current = ws;
 
     ws.onmessage = async (event) => {
@@ -253,7 +271,7 @@ function DashboardContent() {
   const handleReplay = async () => {
     if (!selectedId || !activeWorkspace?.id) return;
     try {
-      await fetch(`http://localhost:8080/_api/replay?token=${activeWorkspace.id}&logId=${selectedId}`, { method: 'POST' });
+      await fetch(`${proxyBase}/_api/replay?token=${activeWorkspace.id}&logId=${selectedId}`, { method: 'POST' });
     } catch (e) {
       console.error("Replay error", e);
     }
@@ -692,13 +710,13 @@ function DashboardContent() {
                           display: 'block',
                           width: '100%',
                         }}>
-                          http://{activeWorkspace?.clientId}.localhost:8080
+                          {getWorkspaceProxyUrl(activeWorkspace?.clientId)}
                         </code>
                       </div>
                       {/* Copy button */}
                       <button
                         title="Copy URL"
-                        onClick={() => handleCopy(`http://${activeWorkspace?.clientId}.localhost:8080`, 'url')}
+                        onClick={() => handleCopy(getWorkspaceProxyUrl(activeWorkspace?.clientId), 'url')}
                         style={{
                           flexShrink: 0,
                           background: 'none',
@@ -719,7 +737,7 @@ function DashboardContent() {
                       {/* Open in new tab button */}
                       <button
                         title="Open in new tab"
-                        onClick={() => window.open(`http://${activeWorkspace?.clientId}.localhost:8080`, '_blank')}
+                        onClick={() => window.open(getWorkspaceProxyUrl(activeWorkspace?.clientId), '_blank')}
                         style={{
                           flexShrink: 0,
                           background: 'none',
